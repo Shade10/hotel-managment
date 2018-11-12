@@ -1,17 +1,31 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import { Route, NavLink, withRouter } from "react-router-dom";
+import HomeView from "../HomeView/HomeView";
+import { Button, Modal, Header, Image } from "semantic-ui-react";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <header className="App-header">
-         
-          <p>Learn React</p>
+          <div className="nav">
+            <div className="navigation" />
+            <ul>
+              <li>
+                <NavLink exact to="/">
+                  Strona Główna
+                </NavLink>
+              </li>
+            </ul>
+          </div>
+          <div className="route">
+            <Route exact path="/" component={() => <HomeView />} />
+          </div>
         </header>
       </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);
