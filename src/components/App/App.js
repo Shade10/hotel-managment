@@ -19,7 +19,9 @@ class App extends Component {
               </li>
             </ul>
           </div>
-          <Route exact path="/" component={() => <HomeView />} />
+          <div className="route">
+            <Route exact path="/" component={() => <HomeView />} />
+          </div>
         </header>
       </div>
     );
