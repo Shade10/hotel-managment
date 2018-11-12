@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import { Route, NavLink, withRouter } from "react-router-dom";
 import HomeView from "../HomeView/HomeView";
-import { Button, Modal, Header, Image } from "semantic-ui-react";
+// import { Button, Modal, Header, Image } from "semantic-ui-react";
 
 class App extends Component {
   render() {

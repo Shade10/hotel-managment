@@ -1,20 +1,19 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from "react";
 
-import './RoomsList.css'
+import "./RoomsList.css";
+import RoomListItem from "../RoomListItem/RoomListItem";
 
 class RoomsList extends Component {
-  static propTypes = {
-
-  }
 
   render() {
-    return  (
-      <div className="RoomsList">
-        RoomsList
-      </div>
-    )
+    return (
+      <>
+        {this.props.rooms.map(room => (
+          <RoomListItem />
+        ))}
+      </>
+    );
   }
 }
 
-export default RoomsList
+export default RoomsList;

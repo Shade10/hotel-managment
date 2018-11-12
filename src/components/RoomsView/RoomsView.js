@@ -1,20 +1,20 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from "react";
 
-import './RoomsView.css'
+import "./RoomsView.css";
 
 class RoomsView extends Component {
-  static propTypes = {
-
-  }
+  state = {
+    rooms: []
+  };
 
   render() {
-    return  (
+    const { rooms } = this.state;
+    return (
       <div className="RoomsView">
-        RoomsView
+        <ul key={rooms.id} />
       </div>
-    )
+    );
   }
 }
 
-export default RoomsView
+export default RoomsView;
