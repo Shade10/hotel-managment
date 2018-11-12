@@ -1,8 +1,22 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  background-color: #020202;
+background-image: url("https://www.transparenttextures.com/patterns/beige-paper.png");
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+}
+
+a{
+  color: #f00c0c
+}
+
 .App {
   text-align: center;
   height: 100vh;
   width: 100vw;
-  background-color: #282c34;
   color: white;
 }
 
@@ -11,12 +25,13 @@
   font-size: calc(10px + 2vmin);
 }
 
-.nav {
-  display: flex;
-  flex-direction: column;
+.nav {  
   align-items: center;
   justify-content: center;
   padding-bottom: 110px;
 }
 
-
+.nav ul {
+  display: flex;
+  justify-content: space-around;
+}
