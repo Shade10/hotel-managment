@@ -1,4 +1,7 @@
-import firebase from "firebase";
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/database";
+import "firebase/firestore";
 
 
 var config = {
@@ -10,3 +13,5 @@ var config = {
     messagingSenderId: "138097369394"
   };
   firebase.initializeApp(config);
+
+  export const rootRef = firebase.database().ref();
