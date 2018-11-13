@@ -7,7 +7,16 @@ class RoomsList extends Component {
   render() {
     return (
       <>
-        <RoomListItem />
+        {this.props.rooms.map(room => (
+          <RoomListItem
+            key={room.id}
+            id={room.id}
+            number={room.number}
+            beds={room.beds}
+            isFree={room.isFree}
+            description={room.description}
+          />
+        ))}
       </>
     );
   }
