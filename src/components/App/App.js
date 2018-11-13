@@ -9,8 +9,18 @@ import { getRooms } from "../../services/rooms";
 class App extends Component {
   state = {
     rooms: [],
-    user: []
+    user: [],
+    signUpOpen: false,
+    signInOpen: false
   };
+
+  signInShow = signInForm => () =>
+    this.setState({ signInForm, signInOpen: true });
+  signInClose = () => this.setState({ signInForm: false });
+
+  signUpShow = signUpForm => () =>
+  this.setState({signUpForm, signInOpen: true});
+  signUpClose = () => this.setState({signUpOpen: false})
 
   componentDidMount() {
     getRooms().then(rooms => this.setState({ rooms }));
@@ -39,7 +49,11 @@ class App extends Component {
 
           <div className="route">
             <Route exact path="/" component={() => <HomeView />} />
-            <Route exact path="/Room-View" component={() => <RoomsView rooms={this.state.rooms} />} />
+            <Route
+              exact
+              path="/Room-View"
+              component={() => <RoomsView rooms={this.state.rooms} />}
+            />
           </div>
         </header>
       </div>
