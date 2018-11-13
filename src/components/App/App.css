@@ -19,6 +19,7 @@ a {
 }
 .linksButton {
   font-size: calc(10px + 2vmin);
+  background: #f00c0c;
 }
 
 .App-header {
