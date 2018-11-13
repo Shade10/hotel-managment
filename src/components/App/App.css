@@ -1,37 +1,44 @@
-*{
+* {
   margin: 0;
   padding: 0;
 }
 
-body{
+body {
   background-color: #020202;
-background-image: url("https://www.transparenttextures.com/patterns/beige-paper.png");
-/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+  background-image: url("https://www.transparenttextures.com/patterns/beige-paper.png");
+  /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
 
-a{
-  color: #f00c0c
+a {
+  color: #f00c0c;
 }
 
 .App {
   text-align: center;
-  height: 100vh;
-  width: 100vw;
   color: white;
 }
-
+.linksButton {
+  font-size: calc(10px + 2vmin);
+  background: #f00c0c;
+}
 
 .App-header {
   font-size: calc(10px + 2vmin);
 }
 
-.nav {  
-  align-items: center;
-  justify-content: center;
-  padding-bottom: 110px;
+.nav {
+  display: flex;
+  justify-content: left;
 }
 
-.nav ul {
+.navigation {
+  font-size: calc(10px + 2vmin);
+  margin-top: 10px;
+}
+
+.navigation ul {
   display: flex;
   justify-content: space-around;
+  margin-top: 50px;
+  margin-bottom: 150px;
 }
