@@ -12,8 +12,9 @@ class RoomsView extends Component {
     const { rooms } = this.state;
     return (
       <div className="RoomsView">
+        {console.log(this.props.rooms)}
         <ul key={rooms.id}>
-          <RoomsList />
+          <RoomsList rooms={this.props.rooms} />
         </ul>
       </div>
     );

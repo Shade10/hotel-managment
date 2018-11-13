@@ -17,7 +17,9 @@ class RoomListItem extends Component {
     return <div className="RoomListItem">
         <li>
           <span>
-          {this.state.data.name} {this.state.data.surname} {this.state.data.old}
+            <span>
+              Numer pokoju: {this.props.number} - Ilośc łóżek: {this.props.beds} - {this.props.description}
+            </span>
           </span>
         </li>
       </div>;

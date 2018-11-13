@@ -39,7 +39,7 @@ class App extends Component {
 
           <div className="route">
             <Route exact path="/" component={() => <HomeView />} />
-            <Route exact path="/Room-View" component={() => <RoomsView />} />
+            <Route exact path="/Room-View" component={() => <RoomsView rooms={this.state.rooms} />} />
           </div>
         </header>
       </div>
