@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./SignUpForm.css";
 import firebase from "firebase";
 import { rootRef } from "../../setupFirebase";
+import {withRouter} from 'react-router-dom'
 
 class SignUpForm extends Component {
   state = {
@@ -60,10 +61,11 @@ class SignUpForm extends Component {
             value={this.state.surname}
             onChange={this.handleChenge}
           />
+          <button>zarejestruj się</button>
         </form>
       </div>
     );
   }
 }
 
-export default SignUpForm;
+export default withRouter(SignUpForm);
