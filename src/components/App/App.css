@@ -3,7 +3,8 @@
   padding: 0;
 }
 
-body {
+body .App{
+  height: 100vh;
   background-color: #020202;
   background-image: url("https://www.transparenttextures.com/patterns/beige-paper.png");
   /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */

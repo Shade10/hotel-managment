@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import { Button, Modal, Header, Image } from "semantic-ui-react";
+import "semantic-ui-css/semantic.min.css";
 import "./App.css";
 import { Route, NavLink, withRouter } from "react-router-dom";
 import HomeView from "../HomeView/HomeView";
 import RoomsView from "../RoomsView/RoomsView";
 import { getRooms } from "../../services/rooms";
-import { Button, Modal, Header, Image } from "semantic-ui-react";
 import firebase from "firebase";
 import SignUpForm from "../SignUpForm/SignUpForm";
 
