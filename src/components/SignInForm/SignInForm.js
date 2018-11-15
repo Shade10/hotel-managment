@@ -5,7 +5,7 @@ import firebase from "firebase";
 
 class SignInForm extends Component {
   state = {
-    email: "",
+    email: null,
     password: null,
     error: null,
     user: null

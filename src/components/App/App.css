@@ -3,7 +3,8 @@
   padding: 0;
 }
 
-body {
+body .App{
+  height: 100vh;
   background-color: #020202;
   background-image: url("https://www.transparenttextures.com/patterns/beige-paper.png");
   /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
@@ -17,8 +18,15 @@ a {
   text-align: center;
   color: white;
 }
-.linksButton {
-  font-size: calc(10px + 2vmin);
+.linksButton.nav {
+  font-size: calc(5px + 2vmin);
+}
+
+.linksButton.log{
+  font-size: calc(8px + 1vmin);
+  margin: 10px;
+  justify-content: center;
+  text-align: center
 }
 
 .App-header {
