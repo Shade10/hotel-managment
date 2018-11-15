@@ -7,7 +7,8 @@ import HomeView from "../HomeView/HomeView";
 import RoomsView from "../RoomsView/RoomsView";
 import { getRooms } from "../../services/rooms";
 import firebase from "firebase";
-import SignUpForm from "../SignUpForm/SignUpForm";
+import SignUpFormView from '../SignUpFormView/SignUpFormView'
+import SignInFormView from '../../SignInFormView/SignInFormView'
 
 class App extends Component {
   state = {
@@ -20,10 +21,10 @@ class App extends Component {
 
   signInShow = signInForm => () =>
     this.setState({ signInForm, signInOpen: true });
-  signInClose = () => this.setState({ signInForm: false });
+  signInClose = () => this.setState({ signInOpen: false });
 
   signUpShow = signUpForm => () =>
-    this.setState({ signUpForm, signInOpen: true });
+    this.setState({ signUpForm, signUpOpen: true });
   signUpClose = () => this.setState({ signUpOpen: false });
 
   logOut = () => {
@@ -48,43 +49,25 @@ class App extends Component {
   }
 
   render() {
-    const { user } = this.state;
-    return (
-      <div className="App">
+    const { user, signInForm, signInOpen, signUpForm, signUpOpen } = this.state;
+    return <div className="App">
         <div className="nav">
           <div className={user ? "loggedIn signUp" : "signUp"}>
-            <Button
-              onClick={this.signInShow("blurring")}
-              inverted
-              color="blue"
-              className="linksButton"
-            >
+          <Button onClick={this.signUpShow("blurring")} inverted color="blue" className="linksButton log">
               Rejestracja
             </Button>
           </div>
           <div className={user ? "loggedIn signIn" : "signIn"}>
-            <Button
-              onClick={this.signUpShow("blurring")}
-              inverted
-              color="blue"
-              className="linksButton"
-            >
+            <Button onClick={this.signInShow("blurring")} inverted color="blue" className="linksButton log">
               Logowanie
             </Button>
           </div>
           <div className="log">
-            {user ? (
-              <div>
-                <Button
-                  inverted
-                  color="blue"
-                  className="linksButton"
-                  onClick={() => this.logOut()}
-                >
+            {user ? <div>
+                <Button inverted color="blue" className="linksButton" onClick={() => this.logOut()}>
                   Log out
                 </Button>
-              </div>
-            ) : null}
+              </div> : null}
           </div>
         </div>
 
@@ -92,30 +75,59 @@ class App extends Component {
           <div className="navigation">
             <ul>
               <li>
-                <NavLink exact to="/">
-                  Strona Główna
-                </NavLink>
+                <Button inverted color="red" className="linksButton nav">
+                  <NavLink className="links" exact to="/">
+                    Strona Główna
+                  </NavLink>
+                </Button>
               </li>
               <li>
-                <NavLink exact to="/Room-View">
-                  Pokoje
-                </NavLink>
+                <Button inverted color="red" className="linksButton nav">
+                  <NavLink className="links" exact to="/Room-View">
+                    Pokoje
+                  </NavLink>
+                </Button>
               </li>
             </ul>
           </div>
 
           <div className="route">
             <Route exact path="/" component={() => <HomeView />} />
-            <Route
-              exact
-              path="/Room-View"
-              component={() => <RoomsView rooms={this.state.rooms} />}
-            />
-            <Route path="/sign-Up" component={() => <SignUpForm />} />
+            <Route exact path="/Room-View" component={() => <RoomsView rooms={this.state.rooms} />} />
+
           </div>
         </header>
-      </div>
-    );
+
+        <Modal form={signUpForm} open={signUpOpen} onClose={this.signUpClose}>
+          <Modal.Header>Rejestracja</Modal.Header>
+          <Modal.Content image>
+            <Modal.Description>
+              <Header>Rejestracja</Header>
+              <SignUpFormView afterSignUpSuccess={this.signUpClose} />
+            </Modal.Description>
+          </Modal.Content>
+          <Modal.Actions>
+            <Button color="black" onClick={this.signUpClose}>
+              Close
+            </Button>
+          </Modal.Actions>
+        </Modal>
+
+        <Modal form={signInForm} open={signInOpen} onClose={this.signInClose}>
+          <Modal.Header>Logowanie</Modal.Header>
+          <Modal.Content image>
+            <Modal.Description>
+              <Header>Logowanie</Header>
+              <SignInFormView afterSignInSuccess={this.signInClose} />
+            </Modal.Description>
+          </Modal.Content>
+          <Modal.Actions>
+            <Button color="black" onClick={this.signInClose}>
+              Close
+            </Button>
+          </Modal.Actions>
+        </Modal>
+      </div>;
   }
 }
 

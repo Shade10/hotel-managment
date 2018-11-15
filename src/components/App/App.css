@@ -18,8 +18,15 @@ a {
   text-align: center;
   color: white;
 }
-.linksButton {
-  font-size: calc(10px + 2vmin);
+.linksButton.nav {
+  font-size: calc(5px + 2vmin);
+}
+
+.linksButton.log{
+  font-size: calc(8px + 1vmin);
+  margin: 10px;
+  justify-content: center;
+  text-align: center
 }
 
 .App-header {
