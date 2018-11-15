@@ -26,8 +26,9 @@ class SignUpForm extends Component {
       .createUserWithEmailAndPassword(this.state.email, this.state.password )
       .then(data => {
         rootRef
-          .child("/user/" + data.user.uid)
-          .push({ name: this.state.name, surname: this.state.surname });
+          .child("/users/" + data.user.uid)
+          .set({ name: this.state.name, surname: this.state.surname });
+        this.setState({ error: null });
       })
       .then(() => {
         this.props.history.push("/");
@@ -36,6 +37,7 @@ class SignUpForm extends Component {
         }
       })
       .catch(error => this.setState({ error }));
+
   };
 
   render() {

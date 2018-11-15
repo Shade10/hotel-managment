@@ -7,8 +7,10 @@ import HomeView from "../HomeView/HomeView";
 import RoomsView from "../RoomsView/RoomsView";
 import { getRooms } from "../../services/rooms";
 import firebase from "firebase";
-import SignUpFormView from '../SignUpFormView/SignUpFormView'
-import SignInFormView from '../../SignInFormView/SignInFormView'
+import SignUpFormView from "../SignUpFormView/SignUpFormView";
+import SignInFormView from "../../SignInFormView/SignInFormView";
+import { rootRef } from "../../setupFirebase";
+import { getUsers } from "../../services/users";
 
 class App extends Component {
   state = {
@@ -46,28 +48,59 @@ class App extends Component {
 
   componentDidMount() {
     getRooms().then(rooms => this.setState({ rooms }));
+    getUsers().then(users => this.setState({ users }));
+    
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        rootRef
+          .child("/users/" + user.uid)
+          .once("value")
+          .then(snapshot => {
+            let fetchedUser = { uid: user.uid, ...(snapshot.val() || {}) };
+            this.setState({ user: fetchedUser });
+          });
+      }
+    });
   }
 
   render() {
     const { user, signInForm, signInOpen, signUpForm, signUpOpen } = this.state;
-    return <div className="App">
+    return (
+      <div className="App">
         <div className="nav">
           <div className={user ? "loggedIn signUp" : "signUp"}>
-          <Button onClick={this.signUpShow("blurring")} inverted color="blue" className="linksButton log">
+            <Button
+              onClick={this.signUpShow("blurring")}
+              inverted
+              color="blue"
+              className="linksButton log"
+            >
               Rejestracja
             </Button>
           </div>
           <div className={user ? "loggedIn signIn" : "signIn"}>
-            <Button onClick={this.signInShow("blurring")} inverted color="blue" className="linksButton log">
+            <Button
+              onClick={this.signInShow("blurring")}
+              inverted
+              color="blue"
+              className="linksButton log"
+            >
               Logowanie
             </Button>
           </div>
           <div className="log">
-            {user ? <div>
-                <Button inverted color="blue" className="linksButton" onClick={() => this.logOut()}>
+            {user ? (
+              <div>
+                <Button
+                  inverted
+                  color="blue"
+                  className="linksButton"
+                  onClick={() => this.logOut()}
+                >
                   Log out
                 </Button>
-              </div> : null}
+              </div>
+            ) : null}
           </div>
         </div>
 
@@ -93,8 +126,11 @@ class App extends Component {
 
           <div className="route">
             <Route exact path="/" component={() => <HomeView />} />
-            <Route exact path="/Room-View" component={() => <RoomsView rooms={this.state.rooms} />} />
-
+            <Route
+              exact
+              path="/Room-View"
+              component={() => <RoomsView rooms={this.state.rooms} />}
+            />
           </div>
         </header>
 
@@ -127,7 +163,8 @@ class App extends Component {
             </Button>
           </Modal.Actions>
         </Modal>
-      </div>;
+      </div>
+    );
   }
 }
 
