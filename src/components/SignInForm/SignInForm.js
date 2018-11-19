@@ -5,10 +5,9 @@ import firebase from "firebase";
 
 class SignInForm extends Component {
   state = {
-    email: null,
-    password: null,
-    error: null,
-    user: null
+    email: "",
+    password: "",
+    error: null
   };
 
   handleChange = event => {
@@ -37,8 +36,8 @@ class SignInForm extends Component {
         <form onSubmit={this.handleSubmit}>
           {this.state.error && <p>{this.state.error.message}</p>}
           <input
-            placeholder="enter e-mail"
-            name="e-mail"
+            placeholder="enter email"
+            name="email"
             value={this.state.email}
             onChange={this.handleChange}
           />

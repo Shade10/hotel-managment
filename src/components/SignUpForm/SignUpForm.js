@@ -1,15 +1,14 @@
 import React, { Component } from "react";
 import "./SignUpForm.css";
 import firebase from "firebase";
-import { rootRef } from "../../setupFirebase";
 import { withRouter } from "react-router-dom";
 
 class SignUpForm extends Component {
   state = {
-    email: null,
-    password: null,
-    name: null,
-    surname: null,
+    email: "",
+    password: "",
+    name: "",
+    surname: "",
     error: null
   };
 

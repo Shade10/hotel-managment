@@ -9,7 +9,6 @@ import { getRooms } from "../../services/rooms";
 import firebase from "firebase";
 import SignUpFormView from "../SignUpFormView/SignUpFormView";
 import SignInFormView from "../../SignInFormView/SignInFormView";
-import { rootRef } from "../../setupFirebase";
 import { getUsers } from "../../services/users";
 
 class App extends Component {
@@ -18,7 +17,7 @@ class App extends Component {
     users: null,
     user: null,
     signInOpen: false,
-    signUpOpen: false,
+    signUpOpen: false
   };
 
   signInShow = signInForm => () =>
@@ -49,11 +48,12 @@ class App extends Component {
   componentDidMount() {
     getRooms().then(rooms => this.setState({ rooms }));
     getUsers().then(users => this.setState({ users }));
-    
+
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        rootRef
-          .child("/users/" + user.uid)
+        firebase
+          .database()
+          .ref("/users/" + user.uid)
           .once("value")
           .then(snapshot => {
             let fetchedUser = { uid: user.uid, ...(snapshot.val() || {}) };
