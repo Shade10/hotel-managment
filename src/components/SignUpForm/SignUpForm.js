@@ -23,21 +23,23 @@ class SignUpForm extends Component {
     event.preventDefault();
     firebase
       .auth()
-      .createUserWithEmailAndPassword(this.state.email, this.state.password )
+      .createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then(data => {
-        rootRef
-          .child("/users/" + data.user.uid)
-          .set({ name: this.state.name, surname: this.state.surname });
-        this.setState({ error: null });
+        firebase
+          .database()
+          .ref("/users/" + data.user.uid)
+          .set({
+            name: this.state.name,
+            surname: this.state.surname
+          });
       })
       .then(() => {
         this.props.history.push("/");
-        if (this.props.afterSignUpSucces) {
-          this.props.afterSignUpSucces();
+        if (this.props.afterSignUpSuccess) {
+          this.props.afterSignUpSuccess();
         }
       })
       .catch(error => this.setState({ error }));
-
   };
 
   render() {
@@ -61,7 +63,7 @@ class SignUpForm extends Component {
 
           <input
             placeholder="Enter e-mail"
-            name="e-mail"
+            name="email"
             value={this.state.email}
             onChange={this.handleChenge}
           />

@@ -24,8 +24,8 @@ class SignInForm extends Component {
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
         this.props.history.push("/");
-        if (this.props.afterSignInSucces) {
-          this.props.afterSignInSucces();
+        if (this.props.afterSignInSuccess) {
+          this.props.afterSignInSuccess();
         }
       })
       .catch(error => this.setState({ error }));

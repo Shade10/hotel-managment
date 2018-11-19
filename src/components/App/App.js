@@ -17,8 +17,8 @@ class App extends Component {
     rooms: null,
     users: null,
     user: null,
+    signInOpen: false,
     signUpOpen: false,
-    signInOpen: false
   };
 
   signInShow = signInForm => () =>
@@ -43,7 +43,7 @@ class App extends Component {
           console.warn("error");
         }
       )
-      .then(() => this.props.push("/"));
+      .then(() => this.props.history.push("/"));
   };
 
   componentDidMount() {
