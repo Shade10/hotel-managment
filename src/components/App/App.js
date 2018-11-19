@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Modal, Header, Image } from "semantic-ui-react";
+import { Button, Modal, Header } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import "./App.css";
 import { Route, NavLink, withRouter } from "react-router-dom";
@@ -116,7 +116,7 @@ class App extends Component {
               </li>
               <li>
                 <Button inverted color="red" className="linksButton nav">
-                  <NavLink className="links" exact to="/Room-View">
+                  <NavLink className="links" exact to="/Rooms-View">
                     Pokoje
                   </NavLink>
                 </Button>
@@ -125,10 +125,11 @@ class App extends Component {
           </div>
 
           <div className="route">
-            <Route exact path="/" component={() => <HomeView />} />
+            <Route exact path="/"  component={() => <HomeView />} />
+
             <Route
               exact
-              path="/Room-View"
+              path="/Rooms-View"
               component={() => <RoomsView rooms={this.state.rooms} />}
             />
           </div>

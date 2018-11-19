@@ -1,27 +1,24 @@
 import React, { Component } from "react";
-import PropTypes from 'prop-types'
 import "./RoomsList.css";
 import RoomListItem from "../RoomListItem/RoomListItem";
 
 class RoomsList extends Component {
-  static propsTypes = {
-    rooms: PropTypes.array
-  }
   render() {
     return (
       <>
         {this.props.rooms.map(room => (
-          <RoomListItem
-            key={room.id}
-            id={room.id}
-            number={room.number}
-            beds={room.beds}
-            description={room.description}
-          />
+          <li key={room.id}>
+            <RoomListItem
+              id={room.id}
+              key={room.id}
+              number={room.number}
+              beds={room.beds}
+              description={room.description}
+            />
+          </li>
         ))}
       </>
     );
   }
 }
-
 export default RoomsList;
