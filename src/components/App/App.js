@@ -3,13 +3,14 @@ import { Button, Modal, Header } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import "./App.css";
 import { Route, NavLink, withRouter } from "react-router-dom";
+import { getRooms } from "../../services/rooms";
+import { getUsers } from "../../services/users";
 import HomeView from "../HomeView/HomeView";
 import RoomsView from "../RoomsView/RoomsView";
-import { getRooms } from "../../services/rooms";
 import firebase from "firebase";
 import SignUpFormView from "../SignUpFormView/SignUpFormView";
 import SignInFormView from "../../SignInFormView/SignInFormView";
-import { getUsers } from "../../services/users";
+import UserProfileView from "../UserProfileView/UserProfileView";
 
 class App extends Component {
   state = {
@@ -106,6 +107,7 @@ class App extends Component {
 
         <header className="App-header">
           <div className="navigation">
+            {console.log("user before: ", user)}
             <ul>
               <li>
                 <Button inverted color="red" className="linksButton nav">
@@ -116,22 +118,35 @@ class App extends Component {
               </li>
               <li>
                 <Button inverted color="red" className="linksButton nav">
-                  <NavLink className="links" exact to="/Rooms-View">
+                  <NavLink className="links" to="/Rooms-View">
                     Pokoje
                   </NavLink>
                 </Button>
               </li>
+              {user ? (
+                <li>
+                  {console.log("user after: ", user)}
+                  <Button inverted color="red" className="linksButton nav">
+                    <NavLink className="links" to="/My-Profile">
+                      Mój profil
+                    </NavLink>
+                  </Button>
+                </li>
+              ) : null}
             </ul>
           </div>
 
           <div className="route">
-            <Route exact path="/"  component={() => <HomeView />} />
+            <Route exact path="/" component={() => <HomeView />} />
 
             <Route
-              exact
               path="/Rooms-View"
               component={() => <RoomsView rooms={this.state.rooms} />}
             />
+
+            {user ? (
+              <Route path="/My-Profile" component={() => <UserProfileView user={this.state.user} />} />
+            ) : null}
           </div>
         </header>
 
