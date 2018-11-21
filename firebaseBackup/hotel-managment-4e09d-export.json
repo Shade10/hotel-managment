@@ -1,0 +1,19 @@
+{
+  "Rooms" : [ null, {
+    "beds" : 2,
+    "description" : "pokój dwuosobowy",
+    "isFree" : true,
+    "number" : 1
+  }, {
+    "beds" : 1,
+    "description" : "pokój jedno osobowy",
+    "isFree" : false,
+    "number" : 2
+  } ],
+  "users" : {
+    "xzcJp8OhPJR7Ig6sUQ9uDLvijdB3" : {
+      "name" : "tester",
+      "surname" : "test"
+    }
+  }
+}
