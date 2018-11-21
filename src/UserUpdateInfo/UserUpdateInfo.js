@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./UserUpdateInfo.css";
-import { Button , Form, Checkbox} from "semantic-ui-react";
+import { Button, Form, Checkbox } from "semantic-ui-react";
 import { updateUser } from "../services/users";
 import firebase from "firebase";
 
@@ -44,16 +44,24 @@ class UserUpdateInfo extends Component {
   render() {
     return (
       <div className="UserUpdateInfo">
-        <Form onSubmit={this.handleSubmit} className='userProfileUpdate'> 
+        <Form onSubmit={this.handleSubmit} className="userProfileUpdate">
           <Form.Field>
-            <label className='label'>Imię</label>
-            <input placeholder='First Name' />
+            <label className="label">Imię</label>
+            <input placeholder="First Name" />
           </Form.Field>
           <Form.Field>
-            <label className='label'>Nazwisko</label>
-            <input placeholder='Last Name' />
+            <label className="label">Nazwisko</label>
+            <input placeholder="Last Name" />
           </Form.Field>
-          <Button type='submit'>Submit</Button>
+          <Form.Field>
+            <label className="label">Zdjęcie</label>
+            <input
+              type="file"
+              accept="image/png image/png"
+              className="inputFile"
+            />
+          </Form.Field>
+          <Button type="submit">Submit</Button>
         </Form>
       </div>
     );
