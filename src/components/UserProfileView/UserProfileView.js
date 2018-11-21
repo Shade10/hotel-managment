@@ -20,10 +20,10 @@ class UserProfileView extends Component {
     return (
       <div className="UserProfileView">
         <div className="userUpdateInfo">
-          {this.state.isEditMode === true && <UserUpdateInfo user={user.uid} />}
           <Button inverted color="orange" onClick={this.toogleChange}>
             Edytuj Profile
           </Button>
+          {this.state.isEditMode === true && <UserUpdateInfo user={user.uid} />}
         </div>
         <div className="userInfo">
           <p>
