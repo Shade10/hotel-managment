@@ -4,7 +4,7 @@ import "semantic-ui-css/semantic.min.css";
 import "./App.css";
 import { Route, NavLink, withRouter } from "react-router-dom";
 import { getRooms } from "../../services/rooms";
-import { getUsers } from "../../services/users";
+// import { getUsers, getUser } from "../../services/users";
 import HomeView from "../HomeView/HomeView";
 import RoomsView from "../RoomsView/RoomsView";
 import firebase from "firebase";
@@ -15,7 +15,7 @@ import UserProfileView from "../UserProfileView/UserProfileView";
 class App extends Component {
   state = {
     rooms: null,
-    users: null,
+    // users: null,
     user: null,
     signInOpen: false,
     signUpOpen: false
@@ -48,7 +48,7 @@ class App extends Component {
 
   componentDidMount() {
     getRooms().then(rooms => this.setState({ rooms }));
-    getUsers().then(users => this.setState({ users }));
+    // getUsers().then(users => this.setState({ users }));
 
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
@@ -107,7 +107,6 @@ class App extends Component {
 
         <header className="App-header">
           <div className="navigation">
-            {console.log("user before: ", user)}
             <ul>
               <li>
                 <Button inverted color="red" className="linksButton nav">
@@ -145,7 +144,10 @@ class App extends Component {
             />
 
             {user ? (
-              <Route path="/My-Profile" component={() => <UserProfileView user={this.state.user} />} />
+              <Route
+                path="/My-Profile"
+                component={() => <UserProfileView user={user} />}
+              />
             ) : null}
           </div>
         </header>
