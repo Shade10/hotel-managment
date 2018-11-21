@@ -124,7 +124,6 @@ class App extends Component {
               </li>
               {user ? (
                 <li>
-                  {console.log("user after: ", user)}
                   <Button inverted color="red" className="linksButton nav">
                     <NavLink className="links" to="/My-Profile">
                       Mój profil
