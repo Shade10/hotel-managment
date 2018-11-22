@@ -13,7 +13,7 @@ class UserProfileView extends Component {
   };
 
   toogleChange = fieldname => event => {
-    this.setState({ [fieldname]: !event.target.value });
+    this.setState({ [fieldname]: !this.state[fieldname] });
   };
 
   render() {
@@ -24,8 +24,6 @@ class UserProfileView extends Component {
     return (
       <div className="UserProfileView">
         <div className="settings">
-        {console.log(this.state)
-        }
           <div className="userUpdateInfo">
             <Button
               inverted
