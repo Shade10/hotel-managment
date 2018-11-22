@@ -2,14 +2,16 @@ import React, { Component } from "react";
 import "./UserProfileView.css";
 import UserUpdateInfo from "../../UserUpdateInfo/UserUpdateInfo";
 import { Button } from "semantic-ui-react";
+import RoomViewMode from "../RoomViewMode/RoomViewMode";
 
 class UserProfileView extends Component {
   state = {
-    isEditMode: false
+    isEditProfileMode: false,
+    isEditRoomMode: false,
   };
 
-  toogleChange = event => {
-    this.setState({ isEditMode: !this.state.isEditMode });
+  toogleChange = () => {
+    this.setState({ isEditProfileMode: !this.state.isEditProfileMode });
   };
 
   render() {
@@ -19,11 +21,24 @@ class UserProfileView extends Component {
     }
     return (
       <div className="UserProfileView">
-        <div className="userUpdateInfo">
-          <Button inverted color="orange" onClick={this.toogleChange}>
-            Edytuj Profile
-          </Button>
-          {this.state.isEditMode === true && <UserUpdateInfo user={user.uid} />}
+        <div className="settings">
+          <div className="userUpdateInfo">
+            <Button inverted color="orange" onClick={this.toogleChange}>
+              Edytuj Profile
+            </Button>
+          </div>
+          <div className="roomUpdate">
+            <Button inverted color="orange" onClick={this.toogleChange}>
+              Edycja Pokojów
+            </Button>
+          </div>
+        </div>
+
+        <div className="setting-contents">
+          {this.state.isEditProfileMode === true && (
+            <UserUpdateInfo user={user.uid} />
+          )}
+          {this.state.isEditMode === true && <RoomViewMode user={user.uid} />}
         </div>
         <div className="userInfo">
           <p>

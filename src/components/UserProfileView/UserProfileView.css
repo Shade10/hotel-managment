@@ -1,3 +1,8 @@
 .UserProfileView {
-  
+}
+
+.settings{
+    display: flex;
+    justify-content: center;
+    
 }
