@@ -3,15 +3,17 @@ import "./UserProfileView.css";
 import UserUpdateInfo from "../../UserUpdateInfo/UserUpdateInfo";
 import { Button } from "semantic-ui-react";
 import RoomViewMode from "../RoomViewMode/RoomViewMode";
+import EmployeesViewMode from "../EmployeesViewMode/EmployeesViewMode";
 
 class UserProfileView extends Component {
   state = {
     isEditProfileMode: false,
     isEditRoomMode: false,
+    isEditEmployeesMode: false
   };
 
-  toogleChange = () => {
-    this.setState({ isEditProfileMode: !this.state.isEditProfileMode });
+  toogleChange = fieldname => event => {
+    this.setState({ [fieldname]: !event.target.value });
   };
 
   render() {
@@ -22,13 +24,23 @@ class UserProfileView extends Component {
     return (
       <div className="UserProfileView">
         <div className="settings">
+        {console.log(this.state)
+        }
           <div className="userUpdateInfo">
-            <Button inverted color="orange" onClick={this.toogleChange}>
+            <Button
+              inverted
+              color="orange"
+              onClick={this.toogleChange("isEditProfileMode")}
+            >
               Edytuj Profile
             </Button>
           </div>
           <div className="roomUpdate">
-            <Button inverted color="orange" onClick={this.toogleChange}>
+            <Button
+              inverted
+              color="orange"
+              onClick={this.toogleChange("isEditRoomMode")}
+            >
               Edycja Pokojów
             </Button>
           </div>
@@ -38,7 +50,12 @@ class UserProfileView extends Component {
           {this.state.isEditProfileMode === true && (
             <UserUpdateInfo user={user.uid} />
           )}
-          {this.state.isEditMode === true && <RoomViewMode user={user.uid} />}
+          {this.state.isEditRoomMode === true && (
+            <RoomViewMode user={user.uid} />
+          )}
+          {this.state.isEditEmployeesMode === true && (
+            <EmployeesViewMode user={user.uid} />
+          )}
         </div>
         <div className="userInfo">
           <p>
