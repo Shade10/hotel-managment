@@ -1,15 +1,11 @@
 import React, { Component } from "react";
 import "./UserProfileView.css";
-import UserUpdateInfo from "../../UserUpdateInfo/UserUpdateInfo";
 import { Button } from "semantic-ui-react";
-import RoomViewMode from "../RoomViewMode/RoomViewMode";
-import EmployeesViewMode from "../EmployeesViewMode/EmployeesViewMode";
+import UserSettingsView from "../UserSettingsView/UserSettingsView";
 
 class UserProfileView extends Component {
   state = {
-    isEditProfileMode: false,
-    isEditRoomMode: false,
-    isEditEmployeesMode: false
+    isEditMode: false
   };
 
   toogleChange = fieldname => event => {
@@ -28,31 +24,16 @@ class UserProfileView extends Component {
             <Button
               inverted
               color="orange"
-              onClick={this.toogleChange("isEditProfileMode")}
+              onClick={this.toogleChange("isEditMode")}
             >
-              Edytuj Profile
-            </Button>
-          </div>
-          <div className="roomUpdate">
-            <Button
-              inverted
-              color="orange"
-              onClick={this.toogleChange("isEditRoomMode")}
-            >
-              Edycja Pokojów
+              Ustawienia
             </Button>
           </div>
         </div>
 
         <div className="setting-contents">
-          {this.state.isEditProfileMode === true && (
-            <UserUpdateInfo user={user.uid} />
-          )}
-          {this.state.isEditRoomMode === true && (
-            <RoomViewMode user={user.uid} />
-          )}
-          {this.state.isEditEmployeesMode === true && (
-            <EmployeesViewMode user={user.uid} />
+          {this.state.isEditMode === true && (
+            <UserSettingsView user={user} />
           )}
         </div>
         <div className="userInfo">
