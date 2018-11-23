@@ -29,13 +29,11 @@ class UserProfileView extends Component {
               Ustawienia
             </Button>
           </div>
+          <div className="setting-contents">
+            {this.state.isEditMode === true && <UserSettingsView user={user} />}
+          </div>
         </div>
 
-        <div className="setting-contents">
-          {this.state.isEditMode === true && (
-            <UserSettingsView user={user} />
-          )}
-        </div>
         <div className="userInfo">
           <p>
             {user.name} {user.surname}

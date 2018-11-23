@@ -1,8 +1,20 @@
 .UserProfileView {
+    position: relative;
 }
 
 .settings{
-    display: flex;
+    width: 100vw;
+    position: absolute;
+    text-align: right;
+    padding-right: 12.2vw;
+    margin-top: -10vh;
+}
+
+.userUpdateInfo{
+}
+
+.userInfo{
+    position: relative;
     justify-content: center;
-    
+    text-align: center;
 }
