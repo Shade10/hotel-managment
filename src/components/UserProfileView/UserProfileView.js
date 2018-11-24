@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import "./UserProfileView.css";
-import { Button } from "semantic-ui-react";
-import UserSettingsView from "../UserSettingsView/UserSettingsView";
 
 class UserProfileView extends Component {
   

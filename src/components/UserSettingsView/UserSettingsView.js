@@ -17,7 +17,7 @@ class UserSettingsView extends Component {
   render() {
     const user = this.props.user;
     if (!user) {
-      return <p>Loading Page....</p>
+      return <p>Loading Page....</p>;
     }
     return (
       <div className="UserSettingsView">
@@ -27,6 +27,7 @@ class UserSettingsView extends Component {
               inverted
               color="orange"
               onClick={this.toogleChange("isEditRoomMode")}
+              className="linksButton nav"
             >
               <NavLink to={"/My-Profile:" + user.uid + "/Edycja-pokojów"}>
                 Edycja Pokojów
@@ -41,6 +42,7 @@ class UserSettingsView extends Component {
                 inverted
                 color="orange"
                 onClick={this.toogleChange("isEditEmployeesMode")}
+                className="linksButton nav"
               >
                 <NavLink to={"/My-Profile:" + user.uid + "/Edycja-Pracowników"}>
                   Edycja Pracowników

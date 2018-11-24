@@ -13,6 +13,7 @@ import SignInFormView from "../../SignInFormView/SignInFormView";
 import UserProfileView from "../UserProfileView/UserProfileView";
 import RoomViewMode from "../RoomViewMode/RoomViewMode";
 import UserSettingsView from "../UserSettingsView/UserSettingsView";
+import EmployeesViewMode from "../EmployeesViewMode/EmployeesViewMode";
 
 class App extends Component {
   state = {
@@ -147,9 +148,9 @@ class App extends Component {
                 >
                   Ustawienia
                 </Button>
-                  {this.state.isEditMode === true && (
-                    <UserSettingsView user={user} />
-                  )}
+                {this.state.isEditMode === true && (
+                  <UserSettingsView user={user} />
+                )}
               </li>
             </ul>
           </div>
@@ -174,6 +175,13 @@ class App extends Component {
               <Route
                 path={"/My-Profile:" + user.uid + "/Edycja-pokojów"}
                 component={() => <RoomViewMode user={user} />}
+              />
+            )}
+
+            {user && (
+              <Route
+                path={"/My-Profile:" + user.uid + "/Edycja-pracowników"}
+                component={() => <EmployeesViewMode user={user} />}
               />
             )}
           </div>
