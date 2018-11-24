@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import "./UserSettingsView.css";
 import { Button } from "semantic-ui-react";
-import { Route, NavLink, withRouter } from "react-router-dom";
-import RoomViewMode from "../RoomViewMode/RoomViewMode";
+import {  NavLink, withRouter } from "react-router-dom";
 
 class UserSettingsView extends Component {
   state = {
+    isEditUserMode: false,
     isEditRoomMode: false,
     isEditEmployeesMode: false
   };
@@ -19,40 +19,31 @@ class UserSettingsView extends Component {
     if (!user) {
       return <p>Loading Page....</p>;
     }
-    return (
-      <div className="UserSettingsView">
-        <div className="roomMode">
-          <li>
-            <Button
-              inverted
-              color="orange"
-              onClick={this.toogleChange("isEditRoomMode")}
-              className="linksButton nav"
-            >
-              <NavLink to={"/My-Profile:" + user.uid + "/Edycja-pokojów"}>
-                Edycja Pokojów
+    return <div className="UserSettingsView">
+        <li>
+          <Button inverted color="orange" onClick={this.toogleChange("isEditUserMode")} className="linksButton nav">
+            <NavLink to={"/My-Profile:" + user.uid + "/Edycja-profilu"}>
+              Edycja Profilu
+            </NavLink>
+          </Button>
+        </li>
+        <li>
+          <Button inverted color="orange" onClick={this.toogleChange("isEditRoomMode")} className="linksButton nav">
+            <NavLink to={"/My-Profile:" + user.uid + "/Edycja-pokojów"}>
+              Edycja Pokojów
+            </NavLink>
+          </Button>
+        </li>
+        {user.isAdmin && <li>
+            <Button inverted color="orange" onClick={this.toogleChange("isEditEmployeesMode")} className="linksButton nav">
+              <NavLink
+                to={"/My-Profile:" + user.uid + "/Edycja-Pracowników"}
+              >
+                Edycja Pracowników
               </NavLink>
             </Button>
-          </li>
-        </div>
-        {user.isAdmin && (
-          <div className="employeesMode">
-            <li>
-              <Button
-                inverted
-                color="orange"
-                onClick={this.toogleChange("isEditEmployeesMode")}
-                className="linksButton nav"
-              >
-                <NavLink to={"/My-Profile:" + user.uid + "/Edycja-Pracowników"}>
-                  Edycja Pracowników
-                </NavLink>
-              </Button>
-            </li>
-          </div>
-        )}
-      </div>
-    );
+          </li>}
+      </div>;
   }
 }
 
