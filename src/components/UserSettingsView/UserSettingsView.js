@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./UserSettingsView.css";
-import {Button} from 'semantic-ui-react'
+import { Button } from "semantic-ui-react";
+import { Route, NavLink, withRouter } from "react-router-dom";
+import RoomViewMode from "../RoomViewMode/RoomViewMode";
 
 class UserSettingsView extends Component {
   state = {
@@ -22,11 +24,11 @@ class UserSettingsView extends Component {
             color="orange"
             onClick={this.toogleChange("isEditRoomMode")}
           >
-            Edycja Pokojów
+            <NavLink to={"/My-Profile:" + user.uid + "/Edycja-pokojów"}>
+              Edycja Pokojów
+            </NavLink>
           </Button>
         </div>
-        {console.log(user)
-        }
         {user.isAdmin && (
           <div className="employeesMode">
             <Button
@@ -34,13 +36,17 @@ class UserSettingsView extends Component {
               color="orange"
               onClick={this.toogleChange("isEditEmployeesMode")}
             >
-              Edycja Pracowników
+              <NavLink to={"/My-Profile:" + user.uid + "/Edycja-Pracowników"}>
+                Edycja Pracowników
+              </NavLink>
             </Button>
           </div>
         )}
+
+
       </div>
     );
   }
 }
 
-export default UserSettingsView;
+export default withRouter(UserSettingsView);
