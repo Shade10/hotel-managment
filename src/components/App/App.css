@@ -49,3 +49,17 @@ a {
   margin-top: 50px;
   margin-bottom: 150px;
 }
+
+.settings{
+    position: absolute;
+    text-align: center;
+}
+
+.setting-contents{
+  position: absolute
+}
+
+.userInfo{
+    position: relative;
+    text-align: center;
+}

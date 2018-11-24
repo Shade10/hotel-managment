@@ -1,7 +1,6 @@
 .UserUpdateInfo {
 }
 
-
 .userProfileUpdate{
     margin-left: 25vw;
     width: 50%;
@@ -9,14 +8,20 @@
     justify-content: center;
 }
 
-
-
 .ui.form .field>label{
     font-size: 25px;
     padding: 10px;
 }
 
+.ui.form .field>input{
+    font-size: 25px;
+    padding: 10px;
+    text-align: center;
+    
+}
+
 .ui.form .field>.inputFile{
-    padding-left: 10vw;
+    padding-left: 15vw;
     font-size: 20px;
+    text-align: center;
 }
