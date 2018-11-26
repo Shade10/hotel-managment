@@ -14,7 +14,7 @@ import UserProfileView from "../UserProfileView/UserProfileView";
 import RoomViewMode from "../RoomViewMode/RoomViewMode";
 import UserSettingsView from "../UserSettingsView/UserSettingsView";
 import EmployeesViewMode from "../EmployeesViewMode/EmployeesViewMode";
-import UserUpdateInfo from '../../UserUpdateInfo/UserUpdateInfo'
+import UserUpdateInfo from "../../UserUpdateInfo/UserUpdateInfo";
 
 class App extends Component {
   state = {
@@ -74,25 +74,50 @@ class App extends Component {
   }
 
   render() {
-    const { user, signInForm, signInOpen, signUpForm, signUpOpen } = this.state;
-    return <div className="App">
+    const {
+      user,
+      signInForm,
+      signInOpen,
+      signUpForm,
+      signUpOpen,
+      rooms
+    } = this.state;
+    return (
+      <div className="App">
         <div className="nav">
           <div className={user ? "loggedIn signUp" : "signUp"}>
-            <Button onClick={this.signUpShow("blurring")} inverted color="blue" className="linksButton log">
+            <Button
+              onClick={this.signUpShow("blurring")}
+              inverted
+              color="blue"
+              className="linksButton log"
+            >
               Rejestracja
             </Button>
           </div>
           <div className={user ? "loggedIn signIn" : "signIn"}>
-            <Button onClick={this.signInShow("blurring")} inverted color="blue" className="linksButton log">
+            <Button
+              onClick={this.signInShow("blurring")}
+              inverted
+              color="blue"
+              className="linksButton log"
+            >
               Logowanie
             </Button>
           </div>
           <div className="log">
-            {user ? <div>
-                <Button inverted color="blue" className="linksButton" onClick={() => this.logOut()}>
+            {user ? (
+              <div>
+                <Button
+                  inverted
+                  color="blue"
+                  className="linksButton"
+                  onClick={() => this.logOut()}
+                >
                   Log out
                 </Button>
-              </div> : null}
+              </div>
+            ) : null}
           </div>
         </div>
 
@@ -113,34 +138,68 @@ class App extends Component {
                   </NavLink>
                 </Button>
               </li>
-              {user ? <li>
+              {user ? (
+                <li>
                   <Button inverted color="red" className="linksButton nav">
                     <NavLink className="links" to="/My-Profile">
                       Mój profil
                     </NavLink>
                   </Button>
-                </li> : null}
+                </li>
+              ) : null}
               <li>
-                <Button inverted color="red" onClick={this.toogleChange("isEditMode")} className="linksButton nav">
+                <Button
+                  inverted
+                  color="red"
+                  onClick={this.toogleChange("isEditMode")}
+                  className="linksButton nav"
+                >
                   Ustawienia
                 </Button>
-                {this.state.isEditMode === true && <UserSettingsView user={user} />}
+                  {this.state.isEditMode === true && (
+                    <UserSettingsView user={user} rooms={rooms}/>
+                  )}
               </li>
             </ul>
           </div>
 
           <div className="route">
+          {console.log(this.props)
+          }
             <Route exact path="/" component={() => <HomeView />} />
 
-            <Route path="/Rooms-View" component={() => <RoomsView rooms={this.state.rooms} />} />
+            <Route
+              path="/Rooms-View"
+              component={() => <RoomsView rooms={rooms} />}
+            />
 
-            {user ? <Route exact path="/My-Profile" component={() => <UserProfileView user={user} />} /> : null}
+            {user ? (
+              <Route
+                exact
+                path="/My-Profile"
+                component={() => <UserProfileView user={user} />}
+              />
+            ) : null}
+            {user && (
+              <Route
+                path={"/Edycja-profilu"}
+                component={() => <UserUpdateInfo user={user} />}
+              />
+            )}
 
-            {user && <Route path={"/My-Profile:" + user.uid + "/Edycja-profilu"} component={() => <UserUpdateInfo user={user} />} />}
+            {user && (
+              <Route
+                path={"/Edycja-pokojów"}
+                component={() => <RoomViewMode user={user} rooms={rooms} />}
+              />
+            )}
 
-            {user && <Route path={"/My-Profile:" + user.uid + "/Edycja-pokojów"} component={() => <RoomViewMode user={user} />} />}
-
-            {user && <Route path={"/My-Profile:" + user.uid + "/Edycja-pracowników"} component={() => <EmployeesViewMode user={user} />} />}
+            {user && (
+              <Route
+                path={"/Edycja-pracowników"}
+                component={() => <EmployeesViewMode user={user} />}
+              />
+            )}
           </div>
         </header>
 
@@ -173,7 +232,8 @@ class App extends Component {
             </Button>
           </Modal.Actions>
         </Modal>
-      </div>;
+      </div>
+    );
   }
 }
 
