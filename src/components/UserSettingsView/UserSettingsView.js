@@ -17,7 +17,7 @@ class UserSettingsView extends Component {
   render() {
     const user = this.props.user;
     if (!user) {
-      return <p>Loading Page....</p>;
+      return <p></p>;
     }
     return (
       <div className="UserSettingsView">

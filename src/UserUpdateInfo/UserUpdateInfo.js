@@ -36,6 +36,7 @@ class UserUpdateInfo extends Component {
           surname: this.state.surname,
           avatar: url
         };
+        console.log(this.state.file);
         updateUser(this.props.user, userData);
       });
     });
