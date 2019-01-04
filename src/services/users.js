@@ -15,7 +15,7 @@ export const getUser = userId =>
 
 export const updateUser = (userId, userData) =>
   rootRef
-    .child("rooms")
+    .child("users")
     .child(userId)
     .update({
       ...userData

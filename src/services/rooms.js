@@ -20,7 +20,7 @@ export const addRoom = (
   description,
   moreInfo
 ) =>
-  rootRef.child("rooms").push({
+  rootRef.child("Rooms").push({
     roomNumber,
     avatar,
     HowMuchBeds,
@@ -30,17 +30,17 @@ export const addRoom = (
 
 
   export const setRoomOwnership = (roomId, userId) => 
-  rootRef.child('rooms').child(roomId).child('roomIds').update({
+  rootRef.child('Rooms').child(roomId).child('RoomIds').update({
       [userId]: true
   })
 
 // unregister user from room ???
 export const unsetRoomOwnership = (roomId, userId) =>
-    rootRef.child('rooms').child(roomId).child('roomIds').update({
+    rootRef.child('Rooms').child(roomId).child('RoomIds').update({
         [userId]: null
     })
 
   export const updateRoom = (roomId, roomData) => 
-  rootRef.child('rooms').child(roomId).update({
+  rootRef.child('Rooms').child(roomId).update({
       ...roomData
   })
